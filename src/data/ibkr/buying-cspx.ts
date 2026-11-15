@@ -29,7 +29,7 @@ export const buyingSteps: BuyStep[] = [
     id: "hours",
     title: "Elegí la sesión regular",
     summary:
-      "Operá durante el horario regular de Londres; revisá feriados y cambios de horario.",
+      "Consultá la sesión regular de Londres y su coincidencia con EE. UU. en tu zona horaria. Revisá feriados; esta franja no garantiza evitar saltos de precio.",
     details: [
       "Para un ETF del S&P 500, la coincidencia con la sesión regular estadounidense puede ayudar a observar precios de los activos subyacentes. La liquidez y el spread deben revisarse igualmente.",
       "Londres y Nueva York cambian la hora en fechas distintas; Buenos Aires no sigue esos mismos cambios. No hay una única franja argentina válida todo el año.",

@@ -15,6 +15,7 @@ import {
   PageHeader,
   ReviewFooter,
 } from "@/components/reference/Primitives";
+import { MarketHours } from "@/components/reference/MarketHours";
 import { ScreenshotExample } from "@/components/reference/ScreenshotExample";
 import { buyingSteps } from "@/data/ibkr/buying-cspx";
 import { buyingReview } from "@/data/sources";
@@ -98,6 +99,12 @@ export default function BuyCspxPage() {
                   />
                 </div>
                 <p className="body-copy mt-2">{step.summary}</p>
+                {step.id === "hours" ? (
+                  <p className="mt-2 text-xs text-primary">
+                    Abrí “Entender este paso” para ver la sesión convertida a tu
+                    zona.
+                  </p>
+                ) : null}
                 {step.setting ? (
                   <div className="mt-3 rounded-md bg-muted px-3 py-2 font-mono text-xs leading-6 break-words">
                     {step.setting}
@@ -114,6 +121,7 @@ export default function BuyCspxPage() {
                           <li key={detail}>{detail}</li>
                         ))}
                       </ul>
+                      {step.id === "hours" ? <MarketHours /> : null}
                       {step.terms ? (
                         <div className="mt-4 flex flex-wrap gap-2">
                           {step.terms.map((term) => (

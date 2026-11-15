@@ -30,6 +30,7 @@ export const instruments: Instrument[] = [
   {
     ...common,
     symbol: "CNDX / CSNDX",
+    lastReviewed: "2026-11-15",
     name: "iShares NASDAQ 100 UCITS ETF",
     isin: "IE00B53SZB19",
     exposure: "Nasdaq-100",
@@ -90,6 +91,7 @@ export const instruments: Instrument[] = [
   {
     ...common,
     symbol: "IB01",
+    lastReviewed: "2026-11-15",
     name: "iShares $ Treasury Bond 0-1yr UCITS ETF",
     isin: "IE00BGSF1X88",
     exposure: "Treasuries de EE. UU., vencimientos de 0–1 año",
@@ -110,6 +112,7 @@ export const instruments: Instrument[] = [
   {
     ...common,
     symbol: "IBTA",
+    lastReviewed: "2026-11-15",
     name: "iShares $ Treasury Bond 1-3yr UCITS ETF",
     isin: "IE00BYXPSP02",
     exposure: "Treasuries de EE. UU., vencimientos de 1–3 años",

@@ -62,3 +62,11 @@ Las imágenes conservan importes personales históricos, y se presentan como eje
 - No hay consultas de precios, saldos ni URLs de fuentes en tiempo de ejecución.
 - Selección de tema: única preferencia persistida, en localStorage.
 - Dependencias estables comprobadas en npm al iniciar; `package-lock.json` fija la instalación reproducible.
+
+## Horarios y alternativas (2026-11-15)
+
+- En **Qué es CSPX** aparece el conversor de horarios; también está dentro de la explicación del paso **Elegí la sesión regular** de la guía mensual.
+- Usa la zona horaria del navegador y una fecha del calendario de Londres. Se puede comparar con Buenos Aires, Londres o Nueva York.
+- Verificar invierno, verano, semanas de marzo/octubre con cambios de hora desfasados y una zona donde la sesión termine al día siguiente.
+- Es una conversión de horarios habituales, sin calendario de feriados ni información de mercado en vivo. El fin de semana se señala explícitamente.
+- Las alternativas ahora se agrupan en acciones globales, Nasdaq-100 y Treasuries vía ETFs, con explicación de acumulación y límites del análisis 1042-S.

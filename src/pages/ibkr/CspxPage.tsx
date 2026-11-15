@@ -15,6 +15,7 @@ import {
   ReviewFooter,
   RelatedLink,
 } from "@/components/reference/Primitives";
+import { MarketHours } from "@/components/reference/MarketHours";
 import { cspx } from "@/data/ibkr/instruments";
 export default function CspxPage() {
   const [copied, setCopied] = useState(false);
@@ -146,6 +147,7 @@ export default function CspxPage() {
         es irlandés, la cotización elegida está en Londres y las empresas del
         índice son estadounidenses.
       </Notice>
+      <MarketHours />
       <div className="flex flex-wrap items-center gap-5">
         <Button asChild>
           <Link to="/ibkr/buy-cspx">
