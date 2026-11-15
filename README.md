@@ -713,6 +713,152 @@ The glossary must be accessible globally from the primary navigation.
 
 ---
 
+## Visual References
+
+The application includes real screenshots from Interactive Brokers and local Argentine investment platforms. These images are intended as contextual help for concepts and workflows that are easier to understand visually.
+
+Screenshots must complement the written explanation, not replace it.
+
+### Asset location
+
+Screenshots should be stored under:
+
+```text
+public/screenshots/
+  ibkr/
+    buy-cspx-order-ticket.png
+    buy-cspx-order-submitted.png
+    portfolio-position-metrics.png
+    account-balances.png
+    activity-statement-cspx.png
+    cspx-position-details.png
+
+  local/
+    cedears-gld-qqq.jpg
+```
+
+### IBKR screenshots
+
+#### `buy-cspx-order-ticket.png`
+
+Use in the **How to buy CSPX** guide.
+
+It should help explain:
+
+- selecting CSPX
+- specifying quantity as USD
+- using a Limit Order
+- setting Time in Force to `Day`
+- keeping `Outside RTH` disabled
+- understanding that the limit price is the maximum acceptable price per share
+- reviewing the order before submission
+
+#### `buy-cspx-order-submitted.png`
+
+Use after the order-entry explanation to show what a submitted CSPX order looks like.
+
+It may be used when explaining:
+
+- order status
+- limit price
+- submitted quantity
+- pending versus filled orders
+
+#### `portfolio-position-metrics.png`
+
+Use in **Understanding your portfolio**.
+
+This is the primary screenshot for explaining:
+
+- Position / shares
+- Average Price
+- Cost Basis
+- Market Value
+- Daily P&L
+- Unrealized P&L
+
+It should visually reinforce the explanation that:
+
+> Unrealized P&L indicates approximately how much the open position is currently above or below its cost basis.
+
+#### `account-balances.png`
+
+Use in **Account balances** or **How much is my account worth?**
+
+Use it to explain:
+
+- Net Liquidation
+- Cash
+- Settled Cash
+- Unsettled Cash
+- Buying Power
+- Available Funds
+
+The most important concept to emphasize is:
+
+> Net Liquidation is the approximate current value of the entire brokerage account, including investments and cash.
+
+#### `activity-statement-cspx.png`
+
+Use in the section explaining **Activity Statements** and historical verification of trades.
+
+It should help users identify:
+
+- executed trades
+- commissions
+- quantity
+- execution price
+- security information
+- CSPX ISIN
+- exchange/listing information
+
+Activity Statements should be described as the preferred historical record for confirming executed transactions.
+
+#### `cspx-position-details.png`
+
+Use as an optional secondary visual in the portfolio section.
+
+It can reinforce the relationship between:
+
+- shares held
+- average purchase price
+- cost basis
+- market value
+- unrealized P&L
+
+Avoid displaying it if `portfolio-position-metrics.png` already communicates the same concept clearly on the same screen.
+
+### Local investment screenshots
+
+#### `cedears-gld-qqq.jpg`
+
+Use in:
+
+```text
+Local Investing → CEDEARs
+```
+
+It serves as a concrete example of a local Argentine brokerage portfolio containing CEDEAR positions such as:
+
+- GLD
+- QQQ
+
+The screenshot should be accompanied by an explanation that CEDEARs are locally traded certificates representing foreign assets and that their ARS price is influenced both by the underlying asset and the relevant financial exchange rate.
+
+### Screenshot UX
+
+Screenshots should not dominate pages.
+
+Prefer:
+
+- a small preview
+- a `View example` or `See IBKR example` action
+- opening the full screenshot in a shadcn/ui `Dialog`
+
+On mobile, screenshots must remain readable and scrollable or zoomable when appropriate.
+
+Screenshots are examples of the UI at a particular point in time. IBKR and other financial platforms may change their interfaces, so explanatory text must not depend on exact button placement.
+
 # Visual design
 
 ## General style

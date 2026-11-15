@@ -1,0 +1,143 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@custom-variant dark (&:is(.dark *));
+:root {
+  --overlay: oklch(0.12 0.01 260);
+  --background: oklch(0.984 0.003 260);
+  --foreground: oklch(0.25 0.035 260);
+  --card: oklch(1 0 0);
+  --card-foreground: var(--foreground);
+  --popover: var(--card);
+  --popover-foreground: var(--foreground);
+  --primary: oklch(0.48 0.15 258);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.95 0.012 258);
+  --secondary-foreground: oklch(0.34 0.08 258);
+  --muted: oklch(0.955 0.006 260);
+  --muted-foreground: oklch(0.48 0.025 260);
+  --accent: oklch(0.94 0.025 258);
+  --accent-foreground: var(--primary);
+  --destructive: oklch(0.53 0.18 25);
+  --border: oklch(0.91 0.01 260);
+  --input: var(--border);
+  --ring: var(--primary);
+  --radius: 0.75rem;
+  --success: oklch(0.43 0.11 160);
+  --success-foreground: oklch(0.96 0.02 160);
+  --warning: oklch(0.48 0.1 70);
+  --warning-foreground: oklch(0.97 0.024 85);
+  --info: oklch(0.45 0.12 258);
+  --info-foreground: oklch(0.965 0.018 258);
+}
+.dark {
+  --background: oklch(0.175 0.017 260);
+  --foreground: oklch(0.92 0.012 260);
+  --card: oklch(0.215 0.02 260);
+  --card-foreground: var(--foreground);
+  --popover: var(--card);
+  --popover-foreground: var(--foreground);
+  --primary: oklch(0.74 0.115 258);
+  --primary-foreground: oklch(0.19 0.04 258);
+  --secondary: oklch(0.27 0.03 258);
+  --secondary-foreground: oklch(0.88 0.025 258);
+  --muted: oklch(0.255 0.017 260);
+  --muted-foreground: oklch(0.71 0.02 260);
+  --accent: oklch(0.29 0.05 258);
+  --accent-foreground: var(--primary);
+  --destructive: oklch(0.73 0.15 25);
+  --border: oklch(0.32 0.022 260);
+  --input: var(--border);
+  --ring: var(--primary);
+  --success: oklch(0.76 0.12 160);
+  --success-foreground: oklch(0.25 0.035 160);
+  --warning: oklch(0.82 0.12 85);
+  --warning-foreground: oklch(0.255 0.035 70);
+  --info: var(--primary);
+  --info-foreground: oklch(0.245 0.04 258);
+}
+@theme inline {
+  --color-overlay: var(--overlay);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-info: var(--info);
+  --color-info-foreground: var(--info-foreground);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --font-sans: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply m-0 bg-background text-foreground font-sans antialiased;
+  }
+  button,
+  a,
+  input {
+    -webkit-tap-highlight-color: transparent;
+  }
+  button:not(:disabled),
+  summary {
+    cursor: pointer;
+  }
+  :focus-visible {
+    @apply outline-2 outline-ring outline-offset-4;
+  }
+  h1,
+  h2,
+  h3 {
+    @apply tracking-tight;
+  }
+  ::selection {
+    @apply bg-accent text-accent-foreground;
+  }
+}
+@layer components {
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-widest text-muted-foreground;
+  }
+  .section-title {
+    @apply text-xl font-semibold;
+  }
+  .body-copy {
+    @apply text-sm leading-7 text-muted-foreground;
+  }
+  .text-link {
+    @apply font-medium text-primary underline-offset-4 hover:underline;
+  }
+  .reading-stack {
+    @apply space-y-8;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

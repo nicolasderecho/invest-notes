@@ -769,6 +769,120 @@ tailwindcss
 
 plus test/dev tooling.
 
+## Screenshot Usage
+
+Real application screenshots are available under `public/screenshots/`.
+
+Use them when they materially improve understanding of a workflow or financial concept.
+
+Do not treat screenshots as decorative assets.
+
+### General rules
+
+1. Prefer written explanations as the source of truth.
+2. Use screenshots as supporting visual references.
+3. Do not derive financial rules purely from screenshots.
+4. Do not assume UI labels or layouts shown in screenshots will remain unchanged.
+5. Avoid showing multiple screenshots that communicate substantially the same information.
+6. Keep screenshot-heavy content collapsed or secondary so the application remains optimized for quick reference.
+7. Every screenshot must have descriptive `alt` text.
+8. Screenshots must be responsive.
+9. When a screenshot contains many UI details, prefer opening it in a shadcn/ui `Dialog` rather than rendering it at full width inline.
+10. Never hardcode image dimensions in a way that breaks responsive layouts.
+
+### Screenshot mapping
+
+Use these assets in the following contexts:
+
+| Asset | Preferred location | Purpose |
+| --- | --- | --- |
+| `/screenshots/ibkr/buy-cspx-order-ticket.png` | IBKR → Buy CSPX | Explain the monthly CSPX order workflow |
+| `/screenshots/ibkr/buy-cspx-order-submitted.png` | IBKR → Buy CSPX | Show a submitted limit order |
+| `/screenshots/ibkr/portfolio-position-metrics.png` | IBKR → Portfolio Metrics | Explain Market Value, Cost Basis and Unrealized P&L |
+| `/screenshots/ibkr/account-balances.png` | IBKR → Account Value | Explain Net Liquidation, Cash and Settled Cash |
+| `/screenshots/ibkr/activity-statement-cspx.png` | IBKR → Activity Statements | Show historical trade verification |
+| `/screenshots/ibkr/cspx-position-details.png` | IBKR → Portfolio Metrics | Optional secondary example |
+| `/screenshots/local/cedears-gld-qqq.jpg` | Local Investing → CEDEARs | Show a practical example of local CEDEAR holdings |
+
+### UX pattern
+
+For most pages, prefer the following pattern:
+
+```text
+Explanation
+↓
+Short callout
+↓
+"View real IBKR example"
+↓
+Dialog containing screenshot
+↓
+Small caption describing what the user should look at
+```
+
+For example, the Unrealized P&L explanation may contain:
+
+```text
+Unrealized P&L
+How much your currently open position is above or below its cost basis.
+
+[View IBKR example]
+```
+
+The screenshot dialog should then visually highlight or describe where the corresponding value appears.
+
+Do not require the screenshot to understand the concept.
+
+### Reusable component
+
+Prefer implementing a reusable component rather than custom screenshot markup on every page.
+
+Suggested API:
+
+```tsx
+<ScreenshotExample
+  src="/screenshots/ibkr/portfolio-position-metrics.png"
+  alt="IBKR Portfolio view showing CSPX market value, cost basis and unrealized P&L"
+  title="Portfolio metrics in IBKR"
+  description="Look at Market Value, Cost Basis and Unrealized P&L."
+/>
+```
+
+The component should use existing shadcn/ui primitives such as:
+
+- `Button`
+- `Dialog`
+- `DialogContent`
+- `DialogHeader`
+- `DialogTitle`
+- `DialogDescription`
+
+Do not introduce a new UI dependency solely for displaying screenshots.
+
+### Visual annotations
+
+Do not permanently modify the original screenshots unless explicitly requested.
+
+If emphasis is needed, prefer:
+
+- explanatory text below the image
+- numbered callouts outside the image
+- lightweight overlays implemented by the UI
+
+Avoid duplicating or maintaining multiple edited versions of the same screenshot.
+
+### Privacy and maintenance
+
+Before adding any new screenshot to the application:
+
+- verify that it does not expose sensitive account information
+- avoid showing account IDs, personal addresses, tax IDs, bank information, or authentication details
+- crop or redact sensitive information when necessary
+
+Screenshots represent historical examples and should never be presented as guaranteed current IBKR UI.
+
+If the UI changes but the underlying concept remains correct, keep the conceptual explanation authoritative and update the screenshot separately.
+
 ---
 
 # Implementation order
