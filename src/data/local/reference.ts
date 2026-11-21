@@ -49,6 +49,18 @@ export const localRoles = [
     liquidity: "Según dónde se mantenga",
     risk: "No rinde por sí solo; pierde poder de compra frente a inflación en USD y puede bajar contra otras monedas.",
   },
+  {
+    name: "BOPREAL",
+    role: "Deuda del BCRA; revisar serie y forma de pago",
+    liquidity: "Venta sujeta a contraparte; pagos según contrato",
+    risk: "Crédito BCRA/Argentina, regulación, precio y liquidez. No equivale a USD en efectivo.",
+  },
+  {
+    name: "Bonos soberanos",
+    role: "Deuda del gobierno nacional",
+    liquidity: "Mercado secundario o pagos contractuales",
+    risk: "Crédito, default/reestructuración, precio y liquidez. La TIR no es un cobro asegurado.",
+  },
 ];
 export const caucionVsFci = [
   [

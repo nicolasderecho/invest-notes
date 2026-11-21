@@ -4,6 +4,7 @@ import { taxReview } from "../sources";
 interface AlternativeGroup {
   id: string;
   title: string;
+  navLabel: string;
   description: string;
   symbols: string[];
 }
@@ -11,6 +12,7 @@ interface AlternativeGroup {
 export const alternativeGroups: AlternativeGroup[] = [
   {
     id: "equity-core",
+    navLabel: "Acciones globales",
     title: "Acciones: núcleo y diversificación",
     description:
       "CSPX concentra la exposición en EE. UU.; XUSE agrega mercados desarrollados fuera de EE. UU.; VWRA reúne exposición global en un solo fondo.",
@@ -18,19 +20,50 @@ export const alternativeGroups: AlternativeGroup[] = [
   },
   {
     id: "nasdaq-100",
-    title: "Nasdaq-100: CNDX / CSNDX",
+    title: "Nasdaq-100: CNDX",
+    navLabel: "Nasdaq-100",
     description:
-      "Sí, Nasdaq-100 está entre las alternativas. CNDX / CSNDX es la clase UCITS acumulativa de iShares documentada aquí; Nasdaq-100 es el índice y el ETF es el instrumento que comprás. No es el Nasdaq Composite.",
-    symbols: ["CNDX / CSNDX"],
+      "CNDX es la cotización USD en Londres de la clase UCITS acumulativa de iShares. Nasdaq-100 es el índice y el ETF es el instrumento que comprás; no es el Nasdaq Composite.",
+    symbols: ["CNDX"],
+  },
+  {
+    id: "semiconductors",
+    navLabel: "Semiconductores",
+    title: "Semiconductores: SMH UCITS y SEMI",
+    description:
+      "Alternativas sectoriales: SMH UCITS ofrece una exposición más concentrada y SEMI una canasta más amplia. Ambas agregan riesgo específico de semiconductores; ninguna es inherentemente mejor ni sustituye el núcleo de largo plazo en CSPX.",
+    symbols: ["SMH UCITS", "SEMI"],
   },
   {
     id: "treasuries",
+    navLabel: "Treasuries",
     title: "Treasuries mediante ETFs: IB01 e IBTA",
     description:
       "Los Treasuries son deuda del gobierno de EE. UU. Estos fondos permiten tener exposición a una cartera de esos bonos mediante participaciones de un ETF, sin comprar cada bono directamente.",
     symbols: ["IB01", "IBTA"],
   },
 ];
+
+export const etfEquivalences = [
+  ["SPY", "CSPX", "S&P 500"],
+  ["QQQ", "CNDX", "Nasdaq-100"],
+  [
+    "SMH estadounidense",
+    "SMH UCITS / SEMI",
+    "Semiconductores (índices y carteras distintos)",
+  ],
+];
+export const leveragedReview = {
+  lastReviewed: "2026-11-21",
+  sources: [
+    {
+      label: "ProShares · Objetivo diario y riesgos de TQQQ",
+      url: "https://www.proshares.com/our-etfs/leveraged-and-inverse/tqqq",
+    },
+  ],
+};
+export const tqqqExplanation =
+  "TQQQ busca aproximadamente 3× el movimiento DIARIO del Nasdaq-100, antes de costos. Rebalancea y restablece esa exposición a diario: a largo plazo el resultado depende del camino de los precios, de la volatilidad y del rebalanceo; no es simplemente el retorno del índice ×3. No es el equivalente UCITS natural de QQQ/CNDX ni una extensión del núcleo buy-and-hold documentado aquí.";
 
 export const nasdaqNotes = [
   "Su rol es aumentar el sesgo hacia grandes empresas de crecimiento y tecnología. Comparte muchas posiciones con CSPX; sumarlo aumenta ese peso y no aporta por sí solo diversificación geográfica.",

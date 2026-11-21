@@ -9,6 +9,7 @@ import {
 import { ScreenshotExample } from "@/components/reference/ScreenshotExample";
 import { cedears } from "@/data/local/reference";
 import { localReview } from "@/data/sources";
+import { CedearDividends } from "@/components/reference/CedearDividends";
 export default function CedearsPage() {
   return (
     <div className="reading-stack">
@@ -113,6 +114,7 @@ export default function CedearsPage() {
           </RelatedLink>
         </div>
       </section>
+      <CedearDividends />
       <ScreenshotExample
         src="/screenshots/local/cedears-gld-qqq.jpg"
         alt="Tenencias históricas de CEDEARs GLD y QQQ en un broker argentino, expresadas en pesos"

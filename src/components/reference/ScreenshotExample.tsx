@@ -50,6 +50,7 @@ export function ScreenshotExample({
         <div
           className="max-h-[60dvh] overflow-auto rounded-md border"
           tabIndex={0}
+          role="region"
           aria-label="Imagen desplazable"
         >
           <img

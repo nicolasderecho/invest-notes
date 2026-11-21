@@ -11,6 +11,8 @@ import LocalHomePage from "@/pages/local/LocalHomePage";
 import CedearsPage from "@/pages/local/CedearsPage";
 import FciPage from "@/pages/local/FciPage";
 import CaucionesPage from "@/pages/local/CaucionesPage";
+import BoprealPage from "@/pages/local/BoprealPage";
+import SovereignBondsPage from "@/pages/local/SovereignBondsPage";
 import GlossaryPage from "@/pages/GlossaryPage";
 import NotFoundPage from "@/pages/NotFoundPage";
 export function AppRoutes() {
@@ -31,6 +33,8 @@ export function AppRoutes() {
           <Route path="cedears" element={<CedearsPage />} />
           <Route path="fci" element={<FciPage />} />
           <Route path="cauciones" element={<CaucionesPage />} />
+          <Route path="bopreal" element={<BoprealPage />} />
+          <Route path="bonos-soberanos" element={<SovereignBondsPage />} />
         </Route>
         <Route path="glossary" element={<GlossaryPage />} />
         <Route path="*" element={<NotFoundPage />} />

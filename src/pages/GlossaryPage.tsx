@@ -6,12 +6,20 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { PageHeader, ReviewFooter } from "@/components/reference/Primitives";
 import { glossary, normalize } from "@/data/glossary";
-import { buyingReview, localReview, taxReview, reviewed } from "@/data/sources";
+import { glossaryReview } from "@/data/glossary-review";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 export default function GlossaryPage() {
   const [query, setQuery] = useState("");
   const normalized = normalize(query.trim());
   const filtered = glossary.filter((entry) =>
-    normalize(`${entry.term} ${entry.description}`).includes(normalized),
+    normalize(
+      `${entry.term} ${entry.description} ${entry.detail ?? ""}`,
+    ).includes(normalized),
   );
   return (
     <div className="reading-stack">
@@ -68,6 +76,9 @@ export default function GlossaryPage() {
                 {entry.href ? (
                   <Link
                     to={entry.href}
+                    onClick={() => {
+                      if (entry.href?.startsWith("/glossary#")) setQuery("");
+                    }}
                     className="text-link inline-flex items-center gap-1 text-xs"
                   >
                     Ver guía
@@ -79,6 +90,18 @@ export default function GlossaryPage() {
               <p className="mt-2 text-sm leading-7 text-muted-foreground">
                 {entry.description}
               </p>
+              {entry.detail ? (
+                <Accordion type="single" collapsible>
+                  <AccordionItem value="detail" className="border-0">
+                    <AccordionTrigger className="py-2 text-sm">
+                      Ejemplo y matices de {entry.term}
+                    </AccordionTrigger>
+                    <AccordionContent className="body-copy">
+                      {entry.detail}
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+              ) : null}
             </article>
           ))}
         </div>
@@ -101,19 +124,7 @@ export default function GlossaryPage() {
           </Button>
         </div>
       )}
-      <ReviewFooter
-        review={{
-          lastReviewed: reviewed,
-          sources: [
-            ...buyingReview.sources,
-            ...localReview.sources,
-            ...taxReview.sources.filter(
-              (source) =>
-                !buyingReview.sources.some((other) => other.url === source.url),
-            ),
-          ],
-        }}
-      />
+      <ReviewFooter review={glossaryReview} />
     </div>
   );
 }

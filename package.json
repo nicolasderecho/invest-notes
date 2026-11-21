@@ -9,8 +9,10 @@
     "preview": "vite preview --host 127.0.0.1",
     "test": "vitest run",
     "test:watch": "vitest",
-    "format": "prettier --write src vite.config.ts tsconfig.json components.json index.html package.json",
-    "format:check": "prettier --check src vite.config.ts tsconfig.json components.json index.html package.json"
+    "format": "prettier --write src vite.config.ts tsconfig.json components.json index.html package.json .oxlintrc.json",
+    "format:check": "prettier --check src vite.config.ts tsconfig.json components.json index.html package.json .oxlintrc.json",
+    "lint": "oxlint src vite.config.ts",
+    "typecheck": "tsc -b"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",
@@ -33,6 +35,7 @@
     "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "^6.3.0",
     "happy-dom": "^21.0.4",
+    "oxlint": "^1.94.0",
     "prettier": "^3.10.1",
     "tailwindcss": "^4.3.5",
     "typescript": "^7.0.2",

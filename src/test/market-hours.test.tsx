@@ -176,7 +176,7 @@ describe("Alternativas por exposición", () => {
       </ThemeProvider>,
     );
     const nasdaq = screen.getByRole("region", {
-      name: "Nasdaq-100: CNDX / CSNDX",
+      name: "Nasdaq-100: CNDX",
     });
     expect(within(nasdaq).getByText("IE00B53SZB19")).toBeVisible();
     expect(

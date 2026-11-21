@@ -1,5 +1,15 @@
 # Revisión local
 
+## Temas agregados (2026-11-21)
+
+- Abrir `/local/bopreal`: comprobar que las cuatro filas indican USD para amortización normal, ARS al A3500 solo para rescate del tenedor en 1A/1B/1C, y ausencia de esa opción en 1D.
+- Abrir `/local/bonos-soberanos`: revisar conceptos y enlaces al glosario, distinción AL/GD y advertencias de riesgo.
+- En alternativas, comprobar CNDX (LSE/USD), ISIN de SMH UCITS, SEMI y el detalle desplegable de TQQQ.
+- En CEDEARs, abrir los detalles de dividendos y comparar con acumulación de CSPX: un dividendo en especie no equivale a reinvertir automáticamente efectivo.
+- Buscar `bull`, `bear`, `cupón`, `amortización`, `TIR` y `ex-dividend` en el glosario. Revisar los ejemplos desplegables.
+- Validar tablas en móvil y ambos temas. La comprobación visual sigue pendiente si no hay navegador conectado al agente.
+- Ejecutar `npm run lint`, `npm run typecheck`, `npm run build` y `npm test`.
+
 ## Ejecutar
 
 Requiere Node 24 LTS (verificado con 24.11.1) y npm.

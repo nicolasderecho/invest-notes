@@ -31,6 +31,8 @@ describe("Rutas y navegación", () => {
     ["/local/cedears", "CEDEARs: qué estás comprando"],
     ["/local/fci", "FCI y Santander Super Ahorro"],
     ["/local/cauciones", "Cauciones bursátiles"],
+    ["/local/bopreal", "BOPREAL: moneda, pagos y riesgos"],
+    ["/local/bonos-soberanos", "Bonos soberanos"],
     ["/glossary", "Glosario de inversión"],
     ["/missing", "Esta nota no está acá"],
   ])("renderiza %s", (route, title) => {
@@ -109,7 +111,7 @@ describe("Guías", () => {
   });
   it("renderiza los instrumentos con identidad completa", () => {
     renderRoute("/ibkr/alternatives");
-    expect(instruments).toHaveLength(6);
+    expect(instruments).toHaveLength(8);
     for (const instrument of instruments) {
       expect(instrument.isin).toMatch(/^IE[A-Z0-9]{10}$/);
       for (const field of [
@@ -121,7 +123,9 @@ describe("Guías", () => {
         instrument.lastReviewed,
       ])
         expect(field.length).toBeGreaterThan(0);
-      expect(screen.getByText(instrument.isin)).toBeVisible();
+      expect(
+        screen.getByText(instrument.isin, { selector: "dd" }),
+      ).toBeVisible();
       expect(instrument.sources.length).toBeGreaterThan(0);
     }
   });

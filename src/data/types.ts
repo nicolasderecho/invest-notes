@@ -24,6 +24,8 @@ export interface Instrument extends Review {
   role: string;
   listing: string;
   currency: string;
+  replication?: string;
+  ter?: string;
   notes: string[];
   taxReporting: { directUsIncomeProfile: string; reviewNote: string };
 }

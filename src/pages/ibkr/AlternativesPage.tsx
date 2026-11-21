@@ -7,10 +7,20 @@ import {
 } from "@/components/reference/Primitives";
 import { instruments } from "@/data/ibkr/instruments";
 import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { ReferenceTable } from "@/components/reference/ReferenceTable";
+import {
   alternativeGroups,
   nasdaqNotes,
   treasuryNotes,
   treasuryReporting,
+  etfEquivalences,
+  leveragedReview,
+  tqqqExplanation,
 } from "@/data/ibkr/alternatives";
 export default function AlternativesPage() {
   return (
@@ -26,11 +36,7 @@ export default function AlternativesPage() {
       >
         {alternativeGroups.map((group) => (
           <a key={group.id} className="text-link" href={`#${group.id}`}>
-            {group.id === "equity-core"
-              ? "Acciones globales"
-              : group.id === "nasdaq-100"
-                ? "Nasdaq-100"
-                : "Treasuries"}
+            {group.navLabel}
           </a>
         ))}
       </nav>
@@ -39,6 +45,30 @@ export default function AlternativesPage() {
         estadounidenses. Entender la exposición conjunta importa más que contar
         fondos.
       </Notice>
+      <ReferenceTable
+        caption="Referencias de exposición, no fondos jurídicamente equivalentes"
+        headings={["Referencia de EE. UU.", "Alternativa UCITS", "Exposición"]}
+        rows={etfEquivalences}
+      />
+      <Accordion type="single" collapsible>
+        <AccordionItem value="tqqq">
+          <AccordionTrigger>TQQQ no es simplemente QQQ</AccordionTrigger>
+          <AccordionContent className="body-copy">
+            {tqqqExplanation}
+            <p className="mt-3 text-xs">
+              Revisado: {leveragedReview.lastReviewed} ·{" "}
+              <a
+                className="text-link"
+                target="_blank"
+                rel="noreferrer"
+                href={leveragedReview.sources[0].url}
+              >
+                Objetivo y riesgos del emisor
+              </a>
+            </p>
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
       {alternativeGroups.map((group) => (
         <section
           key={group.id}
@@ -50,6 +80,18 @@ export default function AlternativesPage() {
             {group.title}
           </h2>
           <p className="body-copy">{group.description}</p>
+          {group.id === "semiconductors" ? (
+            <Notice
+              title="SMH: el ticker por sí solo no identifica el fondo"
+              warning
+            >
+              Para la versión irlandesa, verificá VanEck Semiconductor UCITS
+              ETF, London Stock Exchange en USD, domicilio Irlanda e ISIN{" "}
+              <strong className="font-mono">IE00BMC38736</strong>. Existe otro
+              SMH estadounidense: un ticker igual o parecido no implica la misma
+              estructura jurídica.
+            </Notice>
+          ) : null}
           {group.id === "nasdaq-100" ? (
             <div className="space-y-3">
               {nasdaqNotes.map((note) => (
@@ -108,9 +150,10 @@ export default function AlternativesPage() {
       </section>
       <ReviewFooter
         review={{
-          lastReviewed: treasuryReporting.lastReviewed,
+          lastReviewed: leveragedReview.lastReviewed,
           sources: [
             ...instruments.flatMap((instrument) => instrument.sources),
+            ...leveragedReview.sources,
             ...treasuryReporting.sources.filter(
               (source) =>
                 !instruments.some((instrument) =>

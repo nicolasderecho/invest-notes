@@ -102,6 +102,8 @@ An optional minimal `/` landing page may show three large navigation cards, but 
 /local/cedears
 /local/fci
 /local/cauciones
+/local/bopreal
+/local/bonos-soberanos
 /glossary
 ```
 
@@ -1146,6 +1148,26 @@ Verify routes such as `/ibkr/buy-cspx` by opening them directly in a new browser
 ---
 
 # Content maintenance
+
+## Reference additions reviewed 2026-11-21
+
+- Local guides: BOPREAL Serie 1 (USD amortization versus optional holder redemption in ARS at A3500) and sovereign bonds, with credit/liquidity risks and glossary-linked terminology.
+- ETF alternatives: CNDX for the USD LSE listing, Irish SMH UCITS and SEMI, ticker-collision warning, and the daily leverage distinction for TQQQ.
+- Existing CSPX and CEDEAR sections: internal accumulation versus cash/species distributions, including the historical IOL crediting reference. Internal accumulation does not normally add investor shares.
+- Glossary: bond terms, market direction and sentiment, distributions, and clearer Bid/Ask/Spread examples.
+
+Sources and review dates live with the structured data. Market availability, prices, yields, FX rates, fees and event-specific dividend conditions must be checked at transaction time; no live data is fetched.
+
+Development checks:
+
+```bash
+npm run lint
+npm run typecheck
+npm run build
+npm test
+```
+
+`lint` uses Oxlint (development-only); `typecheck` uses the project's TypeScript compiler. No runtime/UI dependencies were added for these topics.
 
 Every page containing potentially changing financial/tax facts should display:
 

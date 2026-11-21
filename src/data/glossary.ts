@@ -1,18 +1,106 @@
 import type { Definition } from "./types";
-const entries: Array<[string, string, string?]> = [
+const entries: Array<[string, string, string?, string?]> = [
+  [
+    "BOPREAL",
+    "Bonos para la Reconstrucción de una Argentina Libre: deuda emitida por el BCRA, inicialmente vinculada a deudas comerciales de importadores. No es deuda emitida por el Tesoro.",
+    "/local/bopreal",
+  ],
+  [
+    "Sovereign bond",
+    "Bono soberano: deuda de un gobierno nacional, con pagos contractuales sujetos al cumplimiento del emisor.",
+    "/local/bonos-soberanos",
+  ],
+  [
+    "Price",
+    "Precio: lo que pagás o recibís al operar un bono en el mercado. Puede cotizar por cada 100 de valor nominal y diferir del capital pendiente de pago.",
+    "/local/bonos-soberanos",
+  ],
+  [
+    "Nominal value",
+    "Valor nominal: unidad de capital de referencia del bono, no su precio de mercado. El valor nominal residual es el capital que queda tras las amortizaciones.",
+    "/local/bonos-soberanos",
+  ],
+  [
+    "Coupon",
+    "Cupón: pago de interés contractual del bono. La tasa de cupón no es tu rendimiento total, porque este también depende del precio pagado.",
+    "/local/bonos-soberanos",
+  ],
+  [
+    "Amortization",
+    "Amortización: devolución del capital de un bono, en una o varias cuotas según sus condiciones.",
+    "/local/bonos-soberanos",
+  ],
+  [
+    "Maturity",
+    "Vencimiento: fecha contractual del último pago de un bono. Parte del capital puede haberse amortizado antes.",
+    "/local/bonos-soberanos",
+  ],
+  [
+    "Yield",
+    "Rendimiento: retorno expresado como tasa. Identificá si la ficha muestra rendimiento corriente o al vencimiento; no equivale automáticamente al cupón ni a una ganancia asegurada.",
+    "/local/bonos-soberanos",
+  ],
+  [
+    "TIR",
+    "Tasa Interna de Retorno: rendimiento anualizado implícito en el precio actual y los flujos contractuales pendientes del bono, suponiendo que se paguen según el cronograma.",
+    "/local/bonos-soberanos",
+    "No es una tasa prometida: costos, reinversión, incumplimientos o vender antes pueden cambiar el resultado efectivo.",
+  ],
+  [
+    "Distributing ETF",
+    "Clase de ETF que distribuye ingresos a sus titulares según su política. Reinvertir ese efectivo normalmente requiere una decisión del inversor.",
+    "/local/cedears#dividends",
+  ],
+  [
+    "Ex-dividend date",
+    "Fecha ex-dividendo: desde esta fecha la compra normalmente ya no da derecho al dividendo anunciado. Revisá fecha de registro, liquidación y reglas específicas del evento.",
+    "/local/cedears#dividends",
+  ],
+  [
+    "Bull",
+    "Toro: símbolo de una visión alcista. Ayuda memoria: el toro ataca hacia arriba con los cuernos; bull se asocia con subas.",
+    "/glossary#bullish",
+  ],
+  [
+    "Bullish",
+    "Alcista: expectativa de suba en un activo o tendencia/sentimiento general positivo durante un período. No exige que todas las acciones suban cada día.",
+    undefined,
+    "Bullish on NVDA = esperar una suba de NVDA. Un mercado bullish puede tener acciones que caen, sectores rezagados, correcciones temporales y días negativos.",
+  ],
+  [
+    "Bear",
+    "Oso: símbolo de una visión bajista. Ayuda memoria: el oso golpea hacia abajo con la garra; bear se asocia con bajas.",
+    "/glossary#bearish",
+  ],
+  [
+    "Bearish",
+    "Bajista: expectativa de baja en un activo o tendencia/sentimiento general negativo. No significa que todos los activos caigan simultáneamente.",
+    undefined,
+    "Bearish on the S&P 500 = esperar una baja del índice. En un mercado bearish algunas acciones pueden subir, sectores defensivos pueden rendir mejor y puede haber rallies temporales.",
+  ],
+  [
+    "Bull market",
+    "Mercado alcista: tendencia amplia y sostenida de subas durante el período considerado, con posibles retrocesos y diferencias entre activos.",
+    "/glossary#bullish",
+  ],
+  [
+    "Bear market",
+    "Mercado bajista: caída amplia y sostenida; es común usar una baja de alrededor del 20% o más desde un máximo reciente como referencia, aunque las definiciones varían.",
+    "/glossary#bearish",
+  ],
   [
     "Accumulating ETF",
-    "Clase de ETF que retiene y reinvierte ingresos dentro del fondo, en lugar de distribuirlos como efectivo al inversor.",
-    "/ibkr/cspx",
+    "Clase de ETF que reinvierte ingresos dentro del fondo, sin distribuirlos normalmente como efectivo ni entregar participaciones extra al inversor.",
+    "/ibkr/cspx#accumulation",
   ],
   [
     "Ask",
-    "Precio más bajo al que alguien ofrece vender en el libro de órdenes. Puede cambiar antes de tu ejecución.",
+    "El menor precio que piden los vendedores: lo mínimo que están dispuestos a aceptar ahora. Una compra Market tiende a ejecutar cerca del Ask, sin garantía del precio final.",
     "/ibkr/buy-cspx",
   ],
   [
     "Bid",
-    "Precio más alto al que alguien ofrece comprar en el libro de órdenes.",
+    "El mayor precio que ofrecen los compradores: lo que están dispuestos a pagar ahora. Una venta Market tiende a ejecutar cerca del Bid, sin garantía del precio final.",
     "/ibkr/buy-cspx",
   ],
   [
@@ -171,7 +259,7 @@ const entries: Array<[string, string, string?]> = [
   ],
   [
     "Spread",
-    "Diferencia entre Ask y Bid. Es un costo implícito de operar y suele ampliarse cuando hay menor liquidez.",
+    "Ask − Bid. Ejemplo: Bid 99.90, Ask 100.10 → Spread 0.20. Un spread estrecho suele asociarse a mejor liquidez; uno amplio implica mayor fricción. Las cotizaciones no garantizan ejecución.",
     "/ibkr/buy-cspx",
   ],
   [
@@ -225,12 +313,13 @@ export const normalize = (text: string) =>
     .replace(/[\u0300-\u036f]/g, "")
     .toLocaleLowerCase("es");
 export const glossary: Definition[] = entries
-  .map(([term, description, href]) => ({
+  .map(([term, description, href, detail]) => ({
     id: normalize(term)
       .replace(/[^a-z0-9]+/g, "-")
       .replace(/-$/, ""),
     term,
     description,
     href,
+    detail,
   }))
   .sort((a, b) => a.term.localeCompare(b.term, "es", { sensitivity: "base" }));

@@ -1,4 +1,10 @@
-import { ArrowLeftRight, Layers3, Wallet } from "lucide-react";
+import {
+  ArrowLeftRight,
+  Layers3,
+  Wallet,
+  Landmark,
+  FileCheck2,
+} from "lucide-react";
 import {
   GuideCard,
   Notice,
@@ -15,6 +21,7 @@ import {
 } from "@/components/ui/table";
 import { localRoles } from "@/data/local/reference";
 import { localReview } from "@/data/sources";
+import { boprealReview, sovereignReview } from "@/data/local/bonds";
 export default function LocalHomePage() {
   return (
     <div className="reading-stack">
@@ -41,6 +48,18 @@ export default function LocalHomePage() {
           title="Cauciones"
           description="Prestar a corto plazo, con garantía, tasa y vencimiento acordados."
           icon={ArrowLeftRight}
+        />
+        <GuideCard
+          to="/local/bopreal"
+          title="BOPREAL"
+          description="Deuda del BCRA: distinguí amortización en USD de rescate opcional en ARS."
+          icon={FileCheck2}
+        />
+        <GuideCard
+          to="/local/bonos-soberanos"
+          title="Bonos soberanos"
+          description="Deuda del gobierno nacional: precio, cupón, amortización y TIR."
+          icon={Landmark}
         />
       </div>
       <section>
@@ -89,7 +108,16 @@ export default function LocalHomePage() {
         para un pago del mes próximo. Liquidez, volatilidad y riesgo de moneda
         son preguntas distintas.
       </Notice>
-      <ReviewFooter review={localReview} />
+      <ReviewFooter
+        review={{
+          lastReviewed: boprealReview.lastReviewed,
+          sources: [
+            ...localReview.sources,
+            ...boprealReview.sources,
+            ...sovereignReview.sources,
+          ],
+        }}
+      />
     </div>
   );
 }

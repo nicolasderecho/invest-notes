@@ -17,6 +17,8 @@ import {
 } from "@/components/reference/Primitives";
 import { MarketHours } from "@/components/reference/MarketHours";
 import { cspx } from "@/data/ibkr/instruments";
+import { AccumulationExplanation } from "@/components/reference/AccumulationExplanation";
+import { incomeReview } from "@/data/income";
 export default function CspxPage() {
   const [copied, setCopied] = useState(false);
   const [copyFailed, setCopyFailed] = useState(false);
@@ -113,35 +115,7 @@ export default function CspxPage() {
           ))}
         </div>
       </section>
-      <section>
-        <h2 className="section-title mb-3">
-          ¿Dónde veo los dividendos y la capitalización?
-        </h2>
-        <p className="body-copy">
-          En una clase acumulativa, los ingresos recibidos de las inversiones
-          quedan dentro del fondo. No esperes un pago de “intereses de CSPX” en
-          tu saldo de efectivo.
-        </p>
-        <ol className="mt-4 space-y-3">
-          {[
-            "Las empresas subyacentes pueden generar ganancias y pagar dividendos.",
-            "El fondo recibe ingresos y la clase acumulativa los retiene o reinvierte internamente.",
-            "Ese efecto queda integrado en el valor del fondo; los rendimientos futuros actúan sobre una base que cambia.",
-          ].map((text, i) => (
-            <li key={text} className="flex gap-3 text-sm leading-6">
-              <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-secondary text-xs font-semibold">
-                {i + 1}
-              </span>
-              {text}
-            </li>
-          ))}
-        </ol>
-        <p className="body-copy mt-4">
-          Tus aportes mensuales compran más participaciones y cada aporte tiene
-          su propio tiempo invertido. Reinvertir no impide que el precio baje ni
-          asegura una tasa anual constante.
-        </p>
-      </section>
+      <AccumulationExplanation />
       <Notice title="No confundas moneda con exposición">
         Cotizar en USD no significa que el capital esté protegido. El domicilio
         es irlandés, la cotización elegida está en Londres y las empresas del
@@ -159,7 +133,12 @@ export default function CspxPage() {
           Revisar estructura e ingresos
         </RelatedLink>
       </div>
-      <ReviewFooter review={cspx} />
+      <ReviewFooter
+        review={{
+          lastReviewed: incomeReview.lastReviewed,
+          sources: cspx.sources,
+        }}
+      />
     </div>
   );
 }

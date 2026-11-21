@@ -29,17 +29,19 @@ export const instruments: Instrument[] = [
   },
   {
     ...common,
-    symbol: "CNDX / CSNDX",
-    lastReviewed: "2026-11-15",
+    symbol: "CNDX",
+    lastReviewed: "2026-11-21",
     name: "iShares NASDAQ 100 UCITS ETF",
     isin: "IE00B53SZB19",
     exposure: "Nasdaq-100",
     role: "Sesgo hacia crecimiento y tecnología",
-    listing: "Según ticker y mercado",
-    currency: "Según cotización",
+    listing: "London Stock Exchange",
+    currency: "USD",
+    replication: "Física",
+    ter: "≈ 0,30% anual",
     notes: [
       "Se superpone con muchas empresas de CSPX. No aporta por sí solo diversificación geográfica.",
-      "El ticker cambia según la bolsa. Confirmá siempre clase e ISIN.",
+      "CNDX es el ticker de la cotización USD en Londres. CSNDX puede identificar la misma clase en otro mercado o proveedor de datos: verificá el ISIN, no solo las letras.",
     ],
     sources: [
       {
@@ -127,6 +129,61 @@ export const instruments: Instrument[] = [
       {
         label: "iShares · IBTA",
         url: "https://www.ishares.com/uk/individual/en/products/287340/ishares-treasury-bond-1-3yr-ucits-etf-ibta",
+      },
+    ],
+  },
+  {
+    ...common,
+    symbol: "SMH UCITS",
+    name: "VanEck Semiconductor UCITS ETF",
+    isin: "IE00BMC38736",
+    domicile: "Irlanda",
+    exposure: "Semiconductores",
+    role: "Exposición sectorial concentrada",
+    listing: "London Stock Exchange · ticker SMH",
+    currency: "USD",
+    replication: "Física (replicación completa)",
+    ter: "≈ 0,35% anual",
+    lastReviewed: "2026-11-21",
+    notes: [
+      "Reinvestment / acumulación, sin distribución regular: reinvierte dentro del fondo.",
+      "SMH también identifica un ETF de VanEck domiciliado en EE. UU. Mismo ticker no significa misma estructura jurídica; confirmá nombre, bolsa, domicilio e ISIN IE00BMC38736.",
+      "Concentra el riesgo en semiconductores y se superpone con empresas de CSPX/CNDX. No reemplaza el rol de un núcleo diversificado.",
+    ],
+    sources: [
+      {
+        label: "VanEck · SMH UCITS: estructura y acumulación",
+        url: "https://www.vaneck.com/uk/en/investments/semiconductor-etf/holdings/",
+      },
+      {
+        label: "VanEck · SMH UCITS: ISIN y cotizaciones",
+        url: "https://www.vaneck.com/uk/en/library/fact-sheets/smh-fact-sheet.pdf",
+      },
+      {
+        label: "VanEck · SMH estadounidense (otro fondo)",
+        url: "https://www.vaneck.com/us/en/investments/semiconductor-etf-smh/overview/",
+      },
+    ],
+  },
+  {
+    ...common,
+    symbol: "SEMI",
+    name: "iShares MSCI Global Semiconductors UCITS ETF",
+    isin: "IE000I8KRLL9",
+    exposure: "Semiconductores globales y equipamiento",
+    role: "Canasta sectorial más amplia",
+    listing: "London Stock Exchange",
+    currency: "USD",
+    replication: "Física",
+    lastReviewed: "2026-11-21",
+    notes: [
+      "Clase irlandesa UCITS acumulativa. Canasta más amplia que SMH UCITS, pero sigue concentrada en un sector.",
+      "Las metodologías y ponderaciones son distintas. Más empresas no implica que sea inherentemente mejor ni que elimine el riesgo tecnológico.",
+    ],
+    sources: [
+      {
+        label: "iShares · SEMI",
+        url: "https://www.ishares.com/uk/individual/en/products/319084/ishares-msci-global-semiconductors-ucits-etf-semi",
       },
     ],
   },

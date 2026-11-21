@@ -37,6 +37,8 @@ export const localNav = [
   { label: "CEDEARs", to: "/local/cedears", icon: Layers3 },
   { label: "FCI y Super Ahorro", to: "/local/fci", icon: Wallet },
   { label: "Cauciones", to: "/local/cauciones", icon: ArrowLeftRight },
+  { label: "BOPREAL", to: "/local/bopreal", icon: FileCheck2 },
+  { label: "Bonos soberanos", to: "/local/bonos-soberanos", icon: Landmark },
 ];
 export const glossaryNav = [
   { label: "Todos los términos", to: "/glossary", icon: ListFilter },

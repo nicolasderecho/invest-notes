@@ -154,7 +154,10 @@ export function InstrumentCard({ instrument }: { instrument: Instrument }) {
       <CardHeader>
         <div className="flex flex-wrap items-center justify-between gap-2">
           <CardTitle className="text-xl">{instrument.symbol}</CardTitle>
-          <Badge variant="secondary">{instrument.income}</Badge>
+          <div className="flex flex-wrap gap-2">
+            <Badge variant="secondary">{instrument.income}</Badge>
+            {instrument.ucits ? <Badge variant="outline">UCITS</Badge> : null}
+          </div>
         </div>
         <CardDescription>{instrument.name}</CardDescription>
       </CardHeader>
@@ -166,6 +169,12 @@ export function InstrumentCard({ instrument }: { instrument: Instrument }) {
             ["Domicilio", instrument.domicile],
             ["ISIN", instrument.isin],
             ["Cotización", `${instrument.listing} · ${instrument.currency}`],
+            ...(instrument.replication
+              ? [["Replicación", instrument.replication]]
+              : []),
+            ...(instrument.ter
+              ? [["TER (verificar vigente)", instrument.ter]]
+              : []),
           ].map(([label, value]) => (
             <div key={label}>
               <dt className="text-xs text-muted-foreground">{label}</dt>
